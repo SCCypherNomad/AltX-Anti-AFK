@@ -1,0 +1,23 @@
+AltX third-party build notices
+=============================
+
+AltX source code and original assets are Copyright (c) 2026 Cypher Nomad
+and are released under the MIT License in LICENSE.
+
+The published Windows executable is built with Tiny C Compiler 0.9.27.
+TCC is distributed under the GNU Lesser General Public License 2.1.
+Its libtcc1 runtime source includes a separate GPL linking exception
+permitting distribution of combined executables without restrictions
+arising from use of that runtime file. The Windows startup code comes
+from the same upstream release. TCC binaries and source are not bundled
+with AltX; the original, unmodified upstream release is available at:
+
+https://bellard.org/tcc/
+https://download.savannah.nongnu.org/releases/tinycc/tcc-0.9.27.tar.bz2
+
+The resource generator uses Pillow as a build-time dependency and renders
+the icon using the Windows Segoe UI Bold font. Pillow and font files are
+not bundled. Running AltX does not require Python or Pillow.
+
+The executable imports Windows system libraries supplied by Windows.
+These DLLs are not redistributed with this release.

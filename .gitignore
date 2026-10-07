@@ -1,0 +1,12 @@
+/build/
+/dist/
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.zip
+*.log
+*.tmp
+__pycache__/
+*.py[cod]
+.venv/

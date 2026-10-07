@@ -1,0 +1,32 @@
+// Copyright (c) 2026 Cypher Nomad.
+1 ICON "AltXTimer.ico"
+1 24 "AltXTimer.manifest"
+
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEFLAGSMASK 0x3f
+FILEFLAGS 0x0
+FILEOS 0x40004
+FILETYPE 0x1
+FILESUBTYPE 0x0
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "Cypher Nomad\0"
+            VALUE "FileDescription", "AltX Timer by Cypher Nomad\0"
+            VALUE "FileVersion", "1.0.0.0\0"
+            VALUE "InternalName", "AltXTimer\0"
+            VALUE "LegalCopyright", "Copyright (c) 2026 Cypher Nomad\0"
+            VALUE "OriginalFilename", "AltXTimer.exe\0"
+            VALUE "ProductName", "AltX\0"
+            VALUE "ProductVersion", "1.0.0.0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
