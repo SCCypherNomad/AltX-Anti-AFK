@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Cypher Nomad. SPDX-License-Identifier: MIT */
+/* Copyright (c) 2026 SCCypherNomad. SPDX-License-Identifier: MIT */
 #define UNICODE
 #define _UNICODE
 #define WIN32_LEAN_AND_MEAN
@@ -117,7 +117,7 @@ static HWND WINAPI FakeSetFocus(HWND window) { (void)window; return NULL; }
 static LRESULT CALLBACK TestHostProc(HWND window, UINT message, WPARAM wParam, LPARAM lParam)
 {
     if (message == WM_TIMER && wParam == WATCHDOG_TIMER) {
-        Check(0, "timing run completed before its 260-second watchdog");
+        Check(0, "timing run completed before its 630-second watchdog");
         KillTimer(window, WATCHDOG_TIMER);
         return WindowProc(window, WM_CLOSE, 0, 0);
     }
@@ -201,20 +201,20 @@ int main(void)
     WindowProc(testWindow, WM_COMMAND, MAKEWPARAM(ID_ACTIVATE, BN_CLICKED), 0);
     Check(active && !IsWindowEnabled(activateButton), "real production activation state and control");
     Check(!IsWindowVisible(testWindow), "activation did not show any test UI");
-    if (!SetTimer(testWindow, WATCHDOG_TIMER, 260000, NULL)) {
+    if (!SetTimer(testWindow, WATCHDOG_TIMER, 630000, NULL)) {
         printf("FAIL: could not set test watchdog\n");
         WindowProc(testWindow, WM_CLOSE, 0, 0);
         return 1;
     }
-    printf("RUNNING: waiting for actual production 3-second first timer, then actual 240-second repeat timer.\n");
+    printf("RUNNING: waiting for actual production 3-second first timer, then actual 600-second repeat timer.\n");
     while ((result = GetMessageW(&message, NULL, 0, 0)) > 0) {
         TranslateMessage(&message);
         DispatchMessageW(&message);
         if (completeCombos == 2 && active) {
             Check(firstTick - activationTick >= 2900 && firstTick - activationTick <= 10000,
                   "initial timer measured near 3 seconds");
-            Check(secondTick - firstTick >= 239900 && secondTick - firstTick <= 250000,
-                  "repeat timer measured near 240 seconds");
+            Check(secondTick - firstTick >= 599900 && secondTick - firstTick <= 610000,
+                  "repeat timer measured near 600 seconds");
             Check(observedTimerCount == 2 && observedTimers[0] == TIMER_START &&
                   observedTimers[1] == TIMER_REPEAT, "real timer messages arrive in expected order");
             KillTimer(testWindow, WATCHDOG_TIMER);
@@ -229,7 +229,7 @@ int main(void)
     Check(result == 0, "production deactivation posted WM_QUIT and ended GetMessage");
     Check(completeCombos == 2, "exactly two real timed combo batches");
     Check(!active && !IsWindow(testWindow), "no active state or live test window after loop exit");
-    printf("%s: %d failure(s); production activation, 4-minute interval, key descriptors and complete shutdown checked.\n",
+    printf("%s: %d failure(s); production activation, 10-minute interval, key descriptors and complete shutdown checked.\n",
            failures ? "FAIL" : "PASS", failures);
     return failures ? 1 : 0;
 }

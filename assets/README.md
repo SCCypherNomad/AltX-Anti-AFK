@@ -1,12 +1,12 @@
 # AltX Anti-AFK Windows resources
 
-Created by Cypher Nomad. Copyright (c) 2026 Cypher Nomad.
+Created by SCCypherNomad. Copyright (c) 2026 SCCypherNomad.
 
 `AltXTimer.o` is an x64 COFF object for linking with Windows TCC. It embeds:
 
 - Icon group ID 1 with 16, 24, 32, 48, 64, 128 and 256 pixel images.
 - Manifest ID 1 with ordinary user privileges, Common Controls v6 and DPI awareness.
-- Version information ID 1 for AltX Anti-AFK, with file and product version `1.1.0.0` and Cypher Nomad attribution.
+- Version information ID 1 for AltX Anti-AFK, with file and product version `1.1.1.0` and SCCypherNomad attribution.
 
 The matching `.ico`, `.manifest`, `.rc` and `.res` files are included. Windows TCC requires the COFF `.o` file; it does not accept the raw `.res` format. Conventional Microsoft RC or MinGW windres builds can use `AltXTimer.rc`.
 

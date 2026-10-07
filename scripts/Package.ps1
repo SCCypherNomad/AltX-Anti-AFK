@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Cypher Nomad. SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SCCypherNomad. SPDX-License-Identifier: MIT
 param(
     [Parameter(Mandatory = $true)][string]$TccPath,
     [string]$OutputDirectory

@@ -1,7 +1,7 @@
 AltX third-party build notices
 =============================
 
-AltX source code and original assets are Copyright (c) 2026 Cypher Nomad
+AltX source code and original assets are Copyright (c) 2026 SCCypherNomad
 and are released under the MIT License in LICENSE.
 
 The published Windows executable is built with Tiny C Compiler 0.9.27.

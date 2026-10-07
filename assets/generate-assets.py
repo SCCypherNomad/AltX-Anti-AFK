@@ -1,6 +1,6 @@
 """Build AltX Anti-AFK icons, manifest, version information and Windows resources.
 
-Copyright (c) 2026 Cypher Nomad.
+Copyright (c) 2026 SCCypherNomad.
 
 Run with Python 3 and Pillow: python generate-assets.py
 All output is placed beside this script. The .res uses RESOURCEHEADER layout.
@@ -25,21 +25,21 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent
 SIZES = (16, 24, 32, 48, 64, 128, 256)
 FONT_PATH = Path(os.environ.get("WINDIR", "C:/Windows")) / "Fonts/segoeuib.ttf"
-VERSION = (1, 1, 0, 0)
+VERSION = (1, 1, 1, 0)
 VERSION_TEXT = ".".join(map(str, VERSION))
 VERSION_STRINGS = {
-    "CompanyName": "Cypher Nomad",
-    "FileDescription": "AltX Anti-AFK by Cypher Nomad",
+    "CompanyName": "SCCypherNomad",
+    "FileDescription": "AltX Anti-AFK by SCCypherNomad",
     "FileVersion": VERSION_TEXT,
     "InternalName": "AltXTimer",
-    "LegalCopyright": "Copyright (c) 2026 Cypher Nomad",
+    "LegalCopyright": "Copyright (c) 2026 SCCypherNomad",
     "OriginalFilename": "AltXTimer.exe",
     "ProductName": "AltX Anti-AFK",
     "ProductVersion": VERSION_TEXT,
 }
 MANIFEST = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
-  <assemblyIdentity type="win32" name="AltX.Timer.App" version="1.1.0.0" processorArchitecture="*" />
+  <assemblyIdentity type="win32" name="AltX.Timer.App" version="1.1.1.0" processorArchitecture="*" />
   <description>AltX Anti-AFK</description>
   <dependency>
     <dependentAssembly>
@@ -173,7 +173,7 @@ def build_versioninfo():
 def build_rc():
     """Resource script for conventional Microsoft RC or MinGW windres builds."""
     lines = [
-        '// Copyright (c) 2026 Cypher Nomad.',
+        '// Copyright (c) 2026 SCCypherNomad.',
         '1 ICON "AltXTimer.ico"',
         '1 24 "AltXTimer.manifest"',
         '',

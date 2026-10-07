@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Cypher Nomad. SPDX-License-Identifier: MIT */
+/* Copyright (c) 2026 SCCypherNomad. SPDX-License-Identifier: MIT */
 #define UNICODE
 #define _UNICODE
 #define WIN32_LEAN_AND_MEAN
@@ -10,12 +10,12 @@
 
 #define APP_CLASS L"AltXTimer.MainWindow.1"
 #define APP_NAME L"AltX Anti-AFK"
-#define APP_VERSION L"v1.1.0"
+#define APP_VERSION L"v1.1.1"
 #define ID_ACTIVATE 101
 #define ID_DEACTIVATE 102
 #define TIMER_START 1
 #define TIMER_REPEAT 2
-#define REPEAT_MS 240000U
+#define REPEAT_MS 600000U
 #define START_MS 3000U
 #define INPUT_TAG ((ULONG_PTR)0x41585431)
 #define ID_HEADER_TAG 201
@@ -136,7 +136,7 @@ static void PressCombo(void)
         ShowFailure(L"Input blocked. Check your app, then Activate.");
         return;
     }
-    SetStatus(L"Active: Left Alt + X every 4 minutes.");
+    SetStatus(L"Active: Left Alt + X every 10 minutes.");
 }
 
 static HWND AddControl(HWND parent, const WCHAR *className, const WCHAR *text,
@@ -268,7 +268,7 @@ static LRESULT CALLBACK WindowProc(HWND window, UINT message,
             40, 145, 241, 31, ID_KEY_READOUT, keyFont);
         AddControl(window, L"STATIC", L"INTERVAL", SS_NOPREFIX,
             307, 128, 101, 16, ID_INTERVAL_LABEL, monoFont);
-        AddControl(window, L"STATIC", L"EVERY 4 MIN", SS_NOPREFIX,
+        AddControl(window, L"STATIC", L"EVERY 10 MIN", SS_NOPREFIX,
             307, 150, 101, 20, ID_INTERVAL, monoFont);
         statusLabel = AddControl(window, L"STATIC", L"Ready. Activate to begin.", 0,
             46, 213, 357, 20, 0, bodyFont);
@@ -278,7 +278,7 @@ static LRESULT CALLBACK WindowProc(HWND window, UINT message,
             WS_TABSTOP | BS_OWNERDRAW, 228, 258, 190, 44, ID_DEACTIVATE, buttonFont);
         AddControl(window, L"STATIC", L"Deactivate stops and closes the app.", SS_NOPREFIX,
             22, 314, 267, 16, ID_FOOTER, fineFont);
-        AddControl(window, L"STATIC", L"Cypher Nomad", SS_RIGHT | SS_NOPREFIX,
+        AddControl(window, L"STATIC", L"SCCypherNomad", SS_RIGHT | SS_NOPREFIX,
             303, 314, 115, 16, ID_CREDIT, fineFont);
         SetFocus(activateButton);
         return 0;
