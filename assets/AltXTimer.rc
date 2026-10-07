@@ -3,8 +3,8 @@
 1 24 "AltXTimer.manifest"
 
 1 VERSIONINFO
-FILEVERSION 1,0,0,0
-PRODUCTVERSION 1,0,0,0
+FILEVERSION 1,1,0,0
+PRODUCTVERSION 1,1,0,0
 FILEFLAGSMASK 0x3f
 FILEFLAGS 0x0
 FILEOS 0x40004
@@ -16,13 +16,13 @@ BEGIN
         BLOCK "040904B0"
         BEGIN
             VALUE "CompanyName", "Cypher Nomad\0"
-            VALUE "FileDescription", "AltX Timer by Cypher Nomad\0"
-            VALUE "FileVersion", "1.0.0.0\0"
+            VALUE "FileDescription", "AltX Anti-AFK by Cypher Nomad\0"
+            VALUE "FileVersion", "1.1.0.0\0"
             VALUE "InternalName", "AltXTimer\0"
             VALUE "LegalCopyright", "Copyright (c) 2026 Cypher Nomad\0"
             VALUE "OriginalFilename", "AltXTimer.exe\0"
-            VALUE "ProductName", "AltX\0"
-            VALUE "ProductVersion", "1.0.0.0\0"
+            VALUE "ProductName", "AltX Anti-AFK\0"
+            VALUE "ProductVersion", "1.1.0.0\0"
         END
     END
     BLOCK "VarFileInfo"

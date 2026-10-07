@@ -1,6 +1,6 @@
-# Verification
+# AltX Anti-AFK verification
 
-AltX uses a native Windows message loop and timer. The integration harness exercises the application's timer and input-building code while intercepting `SendInput`, foreground selection, and window focus operations. It controls a hidden test window and does not inject real keyboard input.
+AltX Anti-AFK uses a native Windows message loop and timer. The integration harness exercises the application's timer and input-building code while intercepting `SendInput`, foreground selection, and window focus operations. It controls a hidden test window and does not inject real keyboard input.
 
 ## Game test report
 
@@ -8,9 +8,11 @@ Tested and confirmed by Cypher Nomad as an anti-AFK tool on Windows 11 with Star
 
 This is Cypher Nomad's report of a personal game test. It records successful anti-AFK use on Windows 11 with Star Citizen 4.10.1 and covers that Windows and game version only.
 
+The reported game test predates the v1.1.0 visual refresh. Version 1.1.0 updates the interface to a dark space look with blue and cyan neon accents while preserving the three-second first press, four-minute repeat, keyboard input behavior, and complete exit on Deactivate. A new live game test of v1.1.0 has not been recorded.
+
 ## Recorded harness results
 
-The initial production integration run completed with **0 failures** and confirmed:
+The v1.1.0 production integration run on 7 October 2026 completed with **0 failures**, matching the earlier run, and confirmed:
 
 - The first timer fired after **3,000 ms**.
 - The next timer fired after **240,000 ms**.

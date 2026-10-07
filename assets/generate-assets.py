@@ -1,4 +1,4 @@
-"""Build AltX Timer icons, manifest, version information and Windows resources.
+"""Build AltX Anti-AFK icons, manifest, version information and Windows resources.
 
 Copyright (c) 2026 Cypher Nomad.
 
@@ -25,21 +25,22 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent
 SIZES = (16, 24, 32, 48, 64, 128, 256)
 FONT_PATH = Path(os.environ.get("WINDIR", "C:/Windows")) / "Fonts/segoeuib.ttf"
-VERSION = (1, 0, 0, 0)
+VERSION = (1, 1, 0, 0)
+VERSION_TEXT = ".".join(map(str, VERSION))
 VERSION_STRINGS = {
     "CompanyName": "Cypher Nomad",
-    "FileDescription": "AltX Timer by Cypher Nomad",
-    "FileVersion": "1.0.0.0",
+    "FileDescription": "AltX Anti-AFK by Cypher Nomad",
+    "FileVersion": VERSION_TEXT,
     "InternalName": "AltXTimer",
     "LegalCopyright": "Copyright (c) 2026 Cypher Nomad",
     "OriginalFilename": "AltXTimer.exe",
-    "ProductName": "AltX",
-    "ProductVersion": "1.0.0.0",
+    "ProductName": "AltX Anti-AFK",
+    "ProductVersion": VERSION_TEXT,
 }
 MANIFEST = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
-  <assemblyIdentity type="win32" name="AltX.Timer.App" version="1.0.0.0" processorArchitecture="*" />
-  <description>AltX Timer</description>
+  <assemblyIdentity type="win32" name="AltX.Timer.App" version="1.1.0.0" processorArchitecture="*" />
+  <description>AltX Anti-AFK</description>
   <dependency>
     <dependentAssembly>
       <assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" processorArchitecture="*" publicKeyToken="6595b64144ccf1df" language="*" />
@@ -177,8 +178,8 @@ def build_rc():
         '1 24 "AltXTimer.manifest"',
         '',
         '1 VERSIONINFO',
-        'FILEVERSION 1,0,0,0',
-        'PRODUCTVERSION 1,0,0,0',
+        'FILEVERSION ' + ','.join(map(str, VERSION)),
+        'PRODUCTVERSION ' + ','.join(map(str, VERSION)),
         'FILEFLAGSMASK 0x3f',
         'FILEFLAGS 0x0',
         'FILEOS 0x40004',

@@ -12,8 +12,7 @@ New-Item -ItemType Directory -Force -Path (Split-Path $outputFullPath -Parent) |
 & $compilerPath '-Wall' '-Wl,-subsystem=gui' (Join-Path $repoRootPath 'src\AltXTimer.c') (Join-Path $repoRootPath 'assets\AltXTimer.o') '-luser32' '-lgdi32' '-o' $outputFullPath
 if ($LASTEXITCODE -ne 0) { throw 'Compilation failed.' }
 $versionInfo = [Diagnostics.FileVersionInfo]::GetVersionInfo($outputFullPath)
-if ($versionInfo.CompanyName -ne 'Cypher Nomad' -or $versionInfo.FileVersion -ne '1.0.0.0') {
+if ($versionInfo.CompanyName -ne 'Cypher Nomad' -or $versionInfo.FileVersion -ne '1.1.0.0' -or $versionInfo.ProductName -ne 'AltX Anti-AFK') {
     throw 'Unexpected public release version or author metadata.'
 }
 Write-Output "Built $outputFullPath"
-
