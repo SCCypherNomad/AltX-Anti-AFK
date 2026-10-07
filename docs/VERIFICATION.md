@@ -4,17 +4,17 @@ AltX Anti-AFK uses a native Windows message loop and timer. The integration harn
 
 ## Game test report
 
-SCCypherNomad reported successful foreground anti-AFK use on Windows 11 with Star Citizen 4.10.1 on 7 October 2026.
+I verified AltX Anti-AFK v1.1.1 working on Windows 11 with Star Citizen 4.10.1 on 7 October 2026, with the game in the foreground and receiving keyboard input.
 
-This is SCCypherNomad's report of a personal game test of the original release. It covers that Windows and game version only, with Star Citizen in the foreground and receiving keyboard input.
+I also verified the original v1.0.0 release on the same Windows and game version on 7 October 2026, with Star Citizen in the foreground and receiving keyboard input. These are my personal game tests as SCCypherNomad and cover those releases and that Windows/game combination.
 
-The reported game test predates the v1.1.0 visual refresh. Version 1.1.0 updates the interface to a dark space look with blue and cyan neon accents while retaining the original four-minute repeat. Version 1.1.1 corrects the branding to SCCypherNomad, clarifies the foreground requirement, and changes the repeat interval to ten minutes. Both preserve the three-second first press, keyboard input method, and complete exit on Deactivate. A new live game test of v1.1.0 or v1.1.1 has not been recorded.
+My original v1.0.0 game test predates the v1.1.0 visual refresh. Version 1.1.0 updates the interface to a dark space look with blue and cyan neon accents while retaining the original four-minute repeat. A separate live game test of v1.1.0 has not been recorded. Version 1.1.1 corrects the branding to SCCypherNomad, clarifies the foreground requirement, and changes the repeat interval to ten minutes. Both preserve the three-second first press, keyboard input method, and complete exit on Deactivate.
 
 ## Foreground requirement and withdrawn experiment
 
 The released program sends standard Windows keyboard input to the foreground application. Star Citizen must have keyboard focus at every scheduled press. Minimizing the game, Alt+Tabbing, clicking a browser, or focusing another window prevents the shortcut from reaching Star Citizen and may send it to that other application. Windowed or borderless mode alone does not satisfy this requirement.
 
-On 7 October 2026, SCCypherNomad tested a separate local experimental build that sent window messages directly to the Star Citizen window. The reported result was that it did not work when the game was unfocused. Its status only indicated that Windows queued the messages, not that the game accepted them. This failed method does not establish that all possible background-input methods are impossible. The experiment was withdrawn, and background or minimized operation is not a supported public mode.
+On 7 October 2026, I tested a separate local experimental build that sent window messages directly to the Star Citizen window. It did not work when the game was unfocused. Its status only indicated that Windows queued the messages, not that the game accepted them. This failed method does not establish that all possible background-input methods are impossible. The experiment was withdrawn, and background or minimized operation is not a supported public mode.
 
 ## Recorded harness results
 
@@ -51,6 +51,6 @@ Allow slightly more than ten minutes for the current release's full timing check
 
 ## What these results establish
 
-The automated harness checks establish the timer schedule, generated input descriptors, partial-input handling, and shutdown behavior. The recorded runs cover v1.1.0's four-minute schedule and v1.1.1's ten-minute schedule. The harness intercepts keyboard injection and does not send input to Star Citizen or any other external application. Live game behavior is covered by SCCypherNomad's tester report above for the original release, scoped to Windows 11 with Star Citizen 4.10.1 in the foreground. A new live game test of v1.1.1 has not been recorded. Whether another application accepts standard Windows simulated input depends on that application and its execution privileges.
+The automated harness checks establish the timer schedule, generated input descriptors, partial-input handling, and shutdown behavior. The recorded runs cover v1.1.0's four-minute schedule and v1.1.1's ten-minute schedule. The harness intercepts keyboard injection and does not send input to Star Citizen or any other external application. My separate personal game tests above verify the original v1.0.0 release and current v1.1.1 release on Windows 11 with Star Citizen 4.10.1 in the foreground. Whether another application accepts standard Windows simulated input depends on that application and its execution privileges.
 
 The release executable is unsigned. A release checksum checks file integrity against the published checksum; it is not a Windows publisher certificate.

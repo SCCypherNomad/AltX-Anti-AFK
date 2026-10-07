@@ -1,6 +1,14 @@
 # AltX Anti-AFK
 
-A small, portable Windows utility by **SCCypherNomad** for anti-AFK use by the Star Citizen community. Click **Activate** to send **Left Alt + X** after three seconds, then repeat it every ten minutes. Click **Deactivate** to stop and close the program.
+**Take a break. Stay in the 'verse.**
+
+Tired of losing an active mission to an inactivity logout while you take a bathroom break or walk the dog? Waiting out a prison sentence and need a break from the keyboard?
+
+Meet **AltX Anti-AFK**, a free, lightweight Windows utility by **SCCypherNomad** for the Star Citizen community. It sends the **helmet-wipe shortcut, Left Alt + X**, every **ten minutes** to help keep your avatar active while you step away.
+
+**Two buttons. No installer. A tiny 54 KB program.** Click **Activate**, return focus to Star Citizen within **three seconds**, and AltX sends the first shortcut, then repeats every ten minutes. Click **Deactivate** to stop and close the program completely.
+
+[**Download AltX for Windows**](https://github.com/SCCypherNomad/AltX-Anti-AFK/releases/latest/download/AltX-windows-x64.zip)
 
 **Star Citizen must remain the foreground window with keyboard focus. This release does not operate the game in the background or while minimized.** If you Alt+Tab, click your browser, or focus another window, the shortcut may reach that application instead of the game. Windowed or borderless mode alone does not keep the game focused.
 
@@ -62,9 +70,11 @@ While active, the timer wakes for the initial three-second press and subsequent 
 
 AltX Anti-AFK sends input through the Windows [SendInput API](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput). Applications with higher privileges and some games may reject simulated keyboard input. AltX Anti-AFK does not wake a sleeping or locked computer or build up a queue of missed presses.
 
-SCCypherNomad reported successful foreground anti-AFK use on Windows 11 with Star Citizen 4.10.1 on 7 October 2026. That report covers the original release and that Windows and game version only. Version 1.1.0 preserves that release's timing and input behavior. Version 1.1.1 keeps the same keyboard input method and changes the repeat interval from four to ten minutes; a new live game test of those releases has not been recorded.
+**I verified AltX Anti-AFK v1.1.1 working on Windows 11 with Star Citizen 4.10.1 on 7 October 2026, with the game in the foreground and receiving keyboard input.** This confirmation applies to that Windows and game version. Version 1.1.1 uses the same keyboard input method as the original release, with a ten-minute repeat.
 
-The timer and key sequence have also been checked with an integration harness that intercepts keyboard injection. That harness verifies timing and generated input descriptors without sending input to the game. See [verification details](docs/VERIFICATION.md) for the tester report and automated checks.
+I chose the ten-minute repeat after observing an inactivity logout after about fifteen minutes in my own testing.
+
+The timer and key sequence have also been checked with an integration harness that intercepts keyboard injection. That harness verifies timing and generated input descriptors without sending input to the game. See [verification details](docs/VERIFICATION.md) for my live game verification and the automated checks.
 
 Only one AltX Anti-AFK instance runs at a time. Launching it again restores the existing window.
 
@@ -86,8 +96,15 @@ Run the integration checks with:
 
 The full timing check takes slightly more than ten minutes. It intercepts keyboard injection so the test does not send shortcuts to your applications.
 
-## Share AltX Anti-AFK
+## Help fellow Star Citizens find AltX
 
-If AltX Anti-AFK is useful to you, share the [project](https://github.com/SCCypherNomad/AltX-Anti-AFK) with your friends, organization mates, and other Star Citizen users. Please share the project or release link so they can find the source, instructions, and latest version together.
+If AltX makes your breaks less frustrating, help spread the word:
+
+- **Star the [repository](https://github.com/SCCypherNomad/AltX-Anti-AFK)** using GitHub's **Star** button to show your support and save the project.
+- **[Suggest improvements or report a problem](https://github.com/SCCypherNomad/AltX-Anti-AFK/issues/new)**. Tell us what you would like to see, or share which Windows and Star Citizen versions you tested.
+- **Support other players' suggestions** with a thumbs-up reaction on their [issues](https://github.com/SCCypherNomad/AltX-Anti-AFK/issues).
+- **Share AltX** with your friends, organization mates, other Star Citizens, and on your socials. Share the [project](https://github.com/SCCypherNomad/AltX-Anti-AFK) or [latest release](https://github.com/SCCypherNomad/AltX-Anti-AFK/releases/latest) link so everyone can find the current downloads and instructions.
+
+Made by **SCCypherNomad** for fellow Star Citizens. See you in the 'verse!
 
 Copyright (c) 2026 SCCypherNomad. Released under the [MIT License](LICENSE).
