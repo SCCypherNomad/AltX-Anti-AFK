@@ -1,8 +1,8 @@
 # AltX
 
-A small, portable Windows utility by **Cypher Nomad** for the Star Citizen community. Click **Activate** to send **Left Alt + X** after three seconds, then repeat it every four minutes. Click **Deactivate** to stop and close the program.
+A small, portable Windows utility by **Cypher Nomad** for anti-AFK use by the Star Citizen community. Click **Activate** to send **Left Alt + X** after three seconds, then repeat it every four minutes. Click **Deactivate** to stop and close the program.
 
-The shortcut goes to whichever application currently has keyboard focus. AltX uses standard Windows keyboard input and has no game integration. Compatibility with Star Citizen has not been verified.
+The shortcut goes to whichever application currently has keyboard focus. AltX uses standard Windows keyboard input and has no game integration.
 
 ## Download
 
@@ -52,7 +52,9 @@ While active, the timer wakes for the initial three-second press and subsequent 
 
 AltX sends input through the Windows [SendInput API](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput). Applications with higher privileges and some games may reject simulated keyboard input. AltX does not wake a sleeping or locked computer or build up a queue of missed presses.
 
-The timer and key sequence have been checked with an integration harness that intercepts keyboard injection. Those checks do not establish that a particular game accepts the shortcut. See [verification details](docs/VERIFICATION.md).
+Cypher Nomad's game test report: Tested and confirmed by Cypher Nomad as an anti-AFK tool on Windows 11 with Star Citizen 4.10.1 on 7 October 2026. This reported game test covers that Windows and game version only.
+
+The timer and key sequence have also been checked with an integration harness that intercepts keyboard injection. That harness verifies timing and generated input descriptors without sending input to the game. See [verification details](docs/VERIFICATION.md) for the tester report and automated checks.
 
 Only one AltX instance runs at a time. Launching it again restores the existing window.
 
