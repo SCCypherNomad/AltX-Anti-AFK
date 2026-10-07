@@ -25,7 +25,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent
 SIZES = (16, 24, 32, 48, 64, 128, 256)
 FONT_PATH = Path(os.environ.get("WINDIR", "C:/Windows")) / "Fonts/segoeuib.ttf"
-VERSION = (1, 1, 1, 0)
+VERSION = (1, 1, 2, 0)
 VERSION_TEXT = ".".join(map(str, VERSION))
 VERSION_STRINGS = {
     "CompanyName": "SCCypherNomad",
@@ -39,7 +39,7 @@ VERSION_STRINGS = {
 }
 MANIFEST = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
-  <assemblyIdentity type="win32" name="AltX.Timer.App" version="1.1.1.0" processorArchitecture="*" />
+  <assemblyIdentity type="win32" name="AltX.Timer.App" version="1.1.2.0" processorArchitecture="*" />
   <description>AltX Anti-AFK</description>
   <dependency>
     <dependentAssembly>

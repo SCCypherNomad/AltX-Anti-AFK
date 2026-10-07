@@ -10,13 +10,13 @@
 
 #define APP_CLASS L"AltXTimer.MainWindow.1"
 #define APP_NAME L"AltX Anti-AFK"
-#define APP_VERSION L"v1.1.1"
+#define APP_VERSION L"v1.1.2"
 #define ID_ACTIVATE 101
 #define ID_DEACTIVATE 102
 #define TIMER_START 1
 #define TIMER_REPEAT 2
 #define REPEAT_MS 600000U
-#define START_MS 3000U
+#define START_MS 10000U
 #define INPUT_TAG ((ULONG_PTR)0x41585431)
 #define ID_HEADER_TAG 201
 #define ID_VERSION 202
@@ -292,7 +292,7 @@ static LRESULT CALLBACK WindowProc(HWND window, UINT message,
             }
             EnableWindow(activateButton, FALSE);
             SetWindowTextW(window, APP_NAME L" - Active");
-            SetStatus(L"Active: first press in 3 seconds.");
+            SetStatus(L"Active: first press in 10 seconds.");
             SetFocus(deactivateButton);
             ShowWindow(window, SW_MINIMIZE);
             return 0;

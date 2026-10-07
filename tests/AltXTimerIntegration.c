@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* These seams never call the real keyboard injection or focus APIs. */
 static UINT WINAPI FakeSendInput(UINT count, LPINPUT inputs, int size);
@@ -35,6 +36,7 @@ static int partialReturn = -1;
 static int failCleanup;
 static int cleanupSeen;
 static int realTimingStage;
+static int startupOnly;
 static DWORD activationTick;
 static DWORD firstTick;
 static DWORD secondTick;
@@ -117,7 +119,8 @@ static HWND WINAPI FakeSetFocus(HWND window) { (void)window; return NULL; }
 static LRESULT CALLBACK TestHostProc(HWND window, UINT message, WPARAM wParam, LPARAM lParam)
 {
     if (message == WM_TIMER && wParam == WATCHDOG_TIMER) {
-        Check(0, "timing run completed before its 630-second watchdog");
+        Check(0, startupOnly ? "startup run completed before its 30-second watchdog" :
+              "timing run completed before its 630-second watchdog");
         KillTimer(window, WATCHDOG_TIMER);
         return WindowProc(window, WM_CLOSE, 0, 0);
     }
@@ -133,7 +136,7 @@ static void ResetRecorder(void)
     failCleanup = 0;
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
     HINSTANCE instance = GetModuleHandleW(NULL);
     WNDCLASSEXW hostClass;
@@ -141,9 +144,15 @@ int main(void)
     MSG message;
     int result, n;
     WCHAR status[256];
-    int before;
+    int before, targetCombos;
 
     setvbuf(stdout, NULL, _IONBF, 0);
+    if (argc == 2 && strcmp(argv[1], "--startup-only") == 0) startupOnly = 1;
+    else if (argc != 1) {
+        printf("Usage: AltXTimerIntegration.exe [--startup-only]\n");
+        return 2;
+    }
+    targetCombos = startupOnly ? 1 : 2;
     printf("Safety: keyboard injection, show/minimize and focus APIs are intercepted; only this hidden test window is controlled.\n");
     ZeroMemory(&hostClass, sizeof(hostClass));
     hostClass.cbSize = sizeof(hostClass);
@@ -201,22 +210,30 @@ int main(void)
     WindowProc(testWindow, WM_COMMAND, MAKEWPARAM(ID_ACTIVATE, BN_CLICKED), 0);
     Check(active && !IsWindowEnabled(activateButton), "real production activation state and control");
     Check(!IsWindowVisible(testWindow), "activation did not show any test UI");
-    if (!SetTimer(testWindow, WATCHDOG_TIMER, 630000, NULL)) {
+    if (!SetTimer(testWindow, WATCHDOG_TIMER, startupOnly ? 30000 : 630000, NULL)) {
         printf("FAIL: could not set test watchdog\n");
         WindowProc(testWindow, WM_CLOSE, 0, 0);
         return 1;
     }
-    printf("RUNNING: waiting for actual production 3-second first timer, then actual 600-second repeat timer.\n");
+    if (startupOnly)
+        printf("RUNNING STARTUP ONLY: waiting for actual production 10-second first timer; unchanged repeat timer is not remeasured.\n");
+    else
+        printf("RUNNING: waiting for actual production 10-second first timer, then actual 600-second repeat timer.\n");
     while ((result = GetMessageW(&message, NULL, 0, 0)) > 0) {
         TranslateMessage(&message);
         DispatchMessageW(&message);
-        if (completeCombos == 2 && active) {
-            Check(firstTick - activationTick >= 2900 && firstTick - activationTick <= 10000,
-                  "initial timer measured near 3 seconds");
-            Check(secondTick - firstTick >= 599900 && secondTick - firstTick <= 610000,
-                  "repeat timer measured near 600 seconds");
-            Check(observedTimerCount == 2 && observedTimers[0] == TIMER_START &&
-                  observedTimers[1] == TIMER_REPEAT, "real timer messages arrive in expected order");
+        if (completeCombos == targetCombos && active) {
+            Check(firstTick - activationTick >= 9900 && firstTick - activationTick <= 20000,
+                  "initial timer measured near 10 seconds");
+            if (!startupOnly) {
+                Check(secondTick - firstTick >= 599900 && secondTick - firstTick <= 610000,
+                      "repeat timer measured near 600 seconds");
+                Check(observedTimerCount == 2 && observedTimers[0] == TIMER_START &&
+                      observedTimers[1] == TIMER_REPEAT, "real timer messages arrive in expected order");
+            } else {
+                Check(observedTimerCount == 1 && observedTimers[0] == TIMER_START,
+                      "startup-only run received exactly one real initial timer message");
+            }
             KillTimer(testWindow, WATCHDOG_TIMER);
             before = inputCalls;
             WindowProc(testWindow, WM_COMMAND, MAKEWPARAM(ID_DEACTIVATE, BN_CLICKED), 0);
@@ -227,9 +244,14 @@ int main(void)
         }
     }
     Check(result == 0, "production deactivation posted WM_QUIT and ended GetMessage");
-    Check(completeCombos == 2, "exactly two real timed combo batches");
+    Check(completeCombos == targetCombos, startupOnly ? "exactly one real startup combo batch" :
+          "exactly two real timed combo batches");
     Check(!active && !IsWindow(testWindow), "no active state or live test window after loop exit");
-    printf("%s: %d failure(s); production activation, 10-minute interval, key descriptors and complete shutdown checked.\n",
-           failures ? "FAIL" : "PASS", failures);
+    if (startupOnly)
+        printf("%s STARTUP ONLY: %d failure(s); real 10-second activation, key descriptors, cleanup and complete shutdown checked; repeat timer not remeasured.\n",
+               failures ? "FAIL" : "PASS", failures);
+    else
+        printf("%s: %d failure(s); production activation, 10-minute interval, key descriptors and complete shutdown checked.\n",
+               failures ? "FAIL" : "PASS", failures);
     return failures ? 1 : 0;
 }

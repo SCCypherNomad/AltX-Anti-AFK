@@ -6,7 +6,7 @@ Tired of losing an active mission to an inactivity logout while you take a bathr
 
 Meet **AltX Anti-AFK**, a free, lightweight Windows utility by **SCCypherNomad** for the Star Citizen community. It sends the **helmet-wipe shortcut, Left Alt + X**, every **ten minutes** to help keep your avatar active while you step away.
 
-**Two buttons. No installer. A tiny 54 KB program.** Click **Activate**, return focus to Star Citizen within **three seconds**, and AltX sends the first shortcut, then repeats every ten minutes. Click **Deactivate** to stop and close the program completely.
+**Two buttons. No installer. A tiny 54 KB program.** Click **Activate**, return focus to Star Citizen within **ten seconds**, and AltX sends the first shortcut, then repeats every ten minutes. Click **Deactivate** to stop and close the program completely.
 
 [**Download AltX for Windows**](https://github.com/SCCypherNomad/AltX-Anti-AFK/releases/latest/download/AltX-windows-x64.zip)
 
@@ -14,13 +14,9 @@ Meet **AltX Anti-AFK**, a free, lightweight Windows utility by **SCCypherNomad**
 
 AltX Anti-AFK uses standard Windows keyboard input and has no game integration. Deactivate it before switching away from Star Citizen.
 
-## v1.1.1 branding, interval, and instructions
-
 A dark space look with blue and cyan neon accents gives AltX Anti-AFK a fresh cockpit feel. The minimal window keeps **Activate** and **Deactivate** easy to find.
 
-Version 1.1.1 corrects the author branding to **SCCypherNomad**, makes the foreground requirement explicit, and changes the repeat interval to **ten minutes**. The three-second first press, keyboard input method, and complete exit on Deactivate keep the same behavior.
-
-![AltX Anti-AFK v1.1.1 dark space interface with blue neon accents and SCCypherNomad branding](assets/ui-preview.jpg)
+![AltX Anti-AFK dark space interface with blue neon accents and SCCypherNomad branding](assets/ui-preview.jpg)
 
 ## Download
 
@@ -46,7 +42,7 @@ The program is credited to SCCypherNomad. The executable is **unsigned**: this a
 ## Use
 
 1. Open Star Citizen first.
-2. Open **AltXTimer.exe** and click **Activate**. Its window minimizes to the taskbar. Return keyboard focus to Star Citizen within **three seconds**, then keep it focused. Do not minimize it, Alt+Tab, click your browser, or focus another window. Windowed or borderless mode still requires focus.
+2. Open **AltXTimer.exe** and click **Activate**. Its window minimizes to the taskbar. Return keyboard focus to Star Citizen within **ten seconds**, then keep it focused. Do not minimize it, Alt+Tab, click your browser, or focus another window. Windowed or borderless mode still requires focus.
 3. AltX Anti-AFK presses and releases **Left Alt + X** once, then repeats every **ten minutes** while active.
 4. Before browsing or switching to another application, click the AltX taskbar icon to restore its window, then click **Deactivate**. The timer stops and the program exits.
 
@@ -64,13 +60,13 @@ The pinned icon is a shortcut and remains available after the program closes. Ke
 
 **Deactivate closes the process**, so AltX Anti-AFK itself uses no RAM or CPU afterward. An open, stopped window still occupies a small amount of memory. It has no inactive timer and waits for Windows messages instead of polling.
 
-While active, the timer wakes for the initial three-second press and subsequent ten-minute intervals. AltX Anti-AFK does not install automatic startup or leave a hidden process after closing.
+While active, the timer wakes for the initial ten-second press and subsequent ten-minute intervals. AltX Anti-AFK does not install automatic startup or leave a hidden process after closing.
 
 ## Compatibility and verification
 
 AltX Anti-AFK sends input through the Windows [SendInput API](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput). Applications with higher privileges and some games may reject simulated keyboard input. AltX Anti-AFK does not wake a sleeping or locked computer or build up a queue of missed presses.
 
-**I verified AltX Anti-AFK v1.1.1 working on Windows 11 with Star Citizen 4.10.1 on 7 October 2026, with the game in the foreground and receiving keyboard input.** This confirmation applies to that Windows and game version. Version 1.1.1 uses the same keyboard input method as the original release, with a ten-minute repeat.
+**I verified AltX Anti-AFK working on Windows 11 with Star Citizen 4.10.1 on 7 October 2026, with the game in the foreground and receiving keyboard input.** This confirmation applies to that Windows and game version.
 
 I chose the ten-minute repeat after observing an inactivity logout after about fifteen minutes in my own testing.
 
