@@ -92,6 +92,10 @@ Run the integration checks with:
 
 The full timing check takes slightly more than ten minutes. It intercepts keyboard injection so the test does not send shortcuts to your applications.
 
+## Star Citizen guides
+
+Find practical Star Citizen guides, ship information and community tools at [JumpGuide](https://jumpguide.space/).
+
 ## Help fellow Star Citizens find AltX
 
 If AltX makes your breaks less frustrating, help spread the word:
@@ -104,3 +108,4 @@ If AltX makes your breaks less frustrating, help spread the word:
 Made by **SCCypherNomad** for fellow Star Citizens. See you in the 'verse!
 
 Copyright (c) 2026 SCCypherNomad. Released under the [MIT License](LICENSE).
+
